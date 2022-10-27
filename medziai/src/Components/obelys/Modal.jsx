@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 function Modal({ showModal, hide, modalInputs, edit }) {
   const [inputs, setInputs] = useState({
-    id: "",
     name: "",
     class: "",
     height: "",
@@ -16,7 +15,7 @@ function Modal({ showModal, hide, modalInputs, edit }) {
 
   useEffect(() => {
     setInputs({
-      id: modalInputs.id,
+      
       name: modalInputs.name,
       class: modalInputs.class,
       height: modalInputs.height,
@@ -26,7 +25,7 @@ function Modal({ showModal, hide, modalInputs, edit }) {
   const handleEdit = () => {
     edit(
       {
-        id: inputs.id,
+    
         name: inputs.name,
         class: inputs.class,
         height: inputs.height,
@@ -66,19 +65,7 @@ function Modal({ showModal, hide, modalInputs, edit }) {
           </div>
           <div className="modal-body">
             <form>
-              <div className="form-group">
-                <label htmlFor="th1" className="col-form-label">
-                  id
-                </label>
-                <input
-                  className="form-control"
-                  type="text"
-                  id="th1"
-                  value={inputs.id}
-                  onChange={(e) => control(e, "id")}
-                  placeholder="Enter id"
-                />
-              </div>
+              
               <div className="form-group">
                 <label htmlFor="th2" className="col-form-label">
                   name
