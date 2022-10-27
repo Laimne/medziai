@@ -9,12 +9,12 @@ function Item({ data, modal, remove }) {
         <td>{data.name}</td>
         <td>{data.class}</td>
         <td>{data.height}</td>
-        <button className="btn btn-primary" onClick={showEdit}>
+        <td> <button className="btn btn-primary" onClick={showEdit}>
           Edit
-        </button>
-        <button className="btn btn-danger" onClick={()=> remove(data)}>
+        </button> </td>
+        <td>  <button className="btn btn-danger" onClick={()=> remove(data)}>
           Delete
-        </button>
+        </button></td>
       </tr>
     );
   }

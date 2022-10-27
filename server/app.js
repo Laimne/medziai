@@ -43,8 +43,8 @@ app.get('/sodas', (req, res) => {
 app.post('/sodas', (req, res) => {
     const sql = `
         INSERT INTO sodas
-        (id, name, class, height)
-        VALUES (?, ?, ?, ?)
+        ( name, class, height)
+        VALUES ( ?, ?, ?)
     `;
     con.query(sql, [
         req.body.id,
@@ -63,11 +63,10 @@ app.post('/sodas', (req, res) => {
 app.put('/sodas/:id', (req, res) => {
     const sql = `
         UPDATE sodas
-        SET id = ?, name = ?, class = ?, height = ?
+        SET  name = ?, class = ?, height = ?
         WHERE id = ?
     `;
     con.query(sql, [
-        req.body.id,
         req.body.name,
         req.body.class,
         req.body.height,
@@ -125,6 +124,114 @@ app.get('/sodas-key', (req, res) => {
         res.send(results);
     })
 })
+
+
+
+
+
+//Read Node
+app.get('/obelis', (req, res) => {
+    const sql = `
+        SELECT *
+        FROM obelis
+    `;
+    con.query(sql, (err, results) => {
+        if (err) {
+            throw err;
+        }
+        res.send(results);
+    })
+})
+
+
+//Create Node
+app.post('/obelis', (req, res) => {
+    const sql = `
+        INSERT INTO obelis
+        ( name, class, height)
+        VALUES ( ?, ?, ?)
+    `;
+    con.query(sql, [
+     
+        req.body.name,
+        req.body.class,
+        req.body.height
+    ], (err, results) => {
+        if (err) {
+            throw err;
+        }
+        res.send(results);
+    })
+})
+
+//Update Node
+app.put('/obelis/:id', (req, res) => {
+    const sql = `
+        UPDATE obelis
+        SET  name = ?, class = ?, height = ?
+        WHERE id = ?
+    `;
+    con.query(sql, [
+     
+        req.body.name,
+        req.body.class,
+        req.body.height,
+        req.params.id
+    ], (err, results) => {
+        if (err) {
+            throw err;
+        }
+        res.send(results);
+    })
+})
+
+//Delete Node
+app.delete('/obelis/:id', (req, res) => {
+    const sql = `
+        DELETE FROM obelis
+        WHERE id = ?
+        `;
+    con.query(sql, [req.params.id], (err, result) => {
+        if (err) {
+            throw err;
+        }
+        res.send(result);
+    })
+})
+
+
+//Filter Node
+app.get('/obelis-filter/:t', (req, res) => {
+    const sql = `
+        SELECT *
+        FROM obelis
+        WHERE th = ?
+    `;
+    
+    con.query(sql, [req.params.t], (err, results) => {
+        if (err) {
+            throw err;
+        }
+        res.send(results);
+    })
+})
+
+//Search Node
+app.get('/obelis-key', (req, res) => {
+    const sql = `
+        SELECT *
+        FROM obelis
+        WHERE class LIKE ?
+    `;
+    con.query(sql, ['%' + req.query.s + '%'], (err, results) => {
+        if (err) {
+            throw err;
+        }
+        res.send(results);
+    })
+})
+
+
 
 
 app.listen(port, () => {
